@@ -35,6 +35,7 @@
                 if($r->num_rows>0)
                 {
                     // echo "ready to fetch data";
+                    echo "<form method='POST' action='newRecords.php'>";
                     echo "<table border=1 cellspacing=0 cellpadding=10 style='margin:0px auto; text-align:center; margin-top:50px; width:80%; font-family:Arial;'>";
                     echo "<tr><th>Patient ID</th><th>Name</th><th>Visits</th><th>Show All records</th><th>Insert new visit</th><th>Date</th></tr>";
                     while($row = $r->fetch_assoc())
@@ -45,7 +46,7 @@
                             <td>{$row['visits']}</td>
                             <td><button class='button-62' role='button'>All records</button></td>
                             <td><!-- HTML !-->
-                            <button class='button-62' role='button'>New record</button>
+                            <button type='submit' class='button-62' role='button' name='new_record'>New record</button>
                             
                             
                             </td>
@@ -54,6 +55,7 @@
                             </tr>";
                     }
                     echo "</table>";
+                    echo "</form>";
                 }
                 else
                 {
