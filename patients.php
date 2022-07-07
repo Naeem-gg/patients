@@ -9,8 +9,6 @@
 </head>
 <body>
     
-</body>
-</html>
 <?php
 // echo "<h1>Welcome</h1>";
     $servername="localhost";
@@ -35,27 +33,31 @@
                 if($r->num_rows>0)
                 {
                     // echo "ready to fetch data";
-                    echo "<form method='POST' action='newRecords.php'>";
                     echo "<table border=1 cellspacing=0 cellpadding=10 style='margin:0px auto; text-align:center; margin-top:50px; width:80%; font-family:Arial;'>";
-                    echo "<tr><th>Patient ID</th><th>Name</th><th>Visits</th><th>Show All records</th><th>Insert new visit</th><th>Date</th></tr>";
+                    echo "<tr><th>Patient ID</th><th>Name</th><th>Visits</th><th>Date</th><th>Show All records</th><th>New visit</th></tr>";
                     while($row = $r->fetch_assoc())
                     {
-                            echo "<tr>
+                        echo "<tr>
+                        <form method='POST' action='allRec.php?pid={$row['pid']}'>
+                         
                             <td>{$row['pid']}</td>
                             <td>{$row['name']}</td>
                             <td>{$row['visits']}</td>
-                            <td><button class='button-62' role='button'>All records</button></td>
-                            <td><!-- HTML !-->
-                            <button type='submit' class='button-62' role='button' name='new_record'>New record</button>
-                            
-                            
-                            </td>
                             <td>{$row['date']}</td>
-
+                            <td><button class='button-62' type='submit'>All records</button></td>
+                            </form>
+                            
+                            
+                            
+                            
+                            <td>
+                            <form method='POST' action='newRecords.php'>
+                            <button type='submit' class='button-62' role='button' name='new_record'>New record</button>
+                            </form>
+                            </td>
                             </tr>";
                     }
                     echo "</table>";
-                    echo "</form>";
                 }
                 else
                 {
@@ -72,3 +74,6 @@
      {
         echo $th->getMessage();
     }
+?>
+</body>
+</html>
